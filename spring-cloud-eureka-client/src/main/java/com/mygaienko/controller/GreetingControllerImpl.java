@@ -1,15 +1,13 @@
 package com.mygaienko.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by enda1n on 15.10.2017.
  */
 @RestController
-public class Controller {
+public class GreetingControllerImpl implements GreetingController {
 
-    @RequestMapping("/greeting")
     public String greeting() {
         return "Hello from EurekaClient!";
     }
