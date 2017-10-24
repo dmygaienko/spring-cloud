@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 8765
+
+eureka:
+  client:
+     serviceUrl:
+          defaultZone: http://localhost:8761/eureka
+     registerWithEureka: false
+
+zuul:
+  prefix: /api
+  routes:
+    client:
+      path: /client/**
+      serviceId: spring-cloud-eureka-client
