@@ -10,6 +10,9 @@ https://github.com/eugenp/tutorials/blob/master/spring-cloud/spring-cloud-bootst
 https://piotrminkowski.wordpress.com/2017/02/22/microservices-security-with-oauth2/
 https://github.com/piomin/sample-spring-oauth2-microservices
 
+https://www.youtube.com/watch?v=5q8B6lYhFvE&t=3084s
+https://github.com/joshlong/cloud-native-workshop/tree/master/code-java
+
 ################
 
 http://localhost:8761/                      spring eureka
