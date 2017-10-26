@@ -17,11 +17,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+//    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 
 //    @Override
 //    public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -33,11 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .formLogin().permitAll()
-                .and()
-                .requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-                .and()
-                .authorizeRequests().anyRequest().authenticated();
+//        http
+//                .formLogin().permitAll()
+//                .and()
+//                .requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
+//                .and()
+//                .authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().authenticated();
     }
 }

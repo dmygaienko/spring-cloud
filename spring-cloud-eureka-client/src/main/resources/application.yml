@@ -8,6 +8,15 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      defaultZone: ${EUREKA_URI:http://discUser:discPassword@localhost:8761/eureka}
   instance:
     preferIpAddress: true
+
+security:
+  user:
+    name: root
+    password: password
+  oauth2:
+    resource:
+#      loadBalanced: true
+      userInfoUri: http://localhost:9998/user
