@@ -1,6 +1,9 @@
 spring:
   application:
     name: api-gateway
+  redis:
+    host: localhost
+    port: 6379
 
 server:
   port: 8765
@@ -8,8 +11,8 @@ server:
 eureka:
   client:
      serviceUrl:
-          defaultZone: http://localhost:8761/eureka
-     registerWithEureka: false
+          defaultZone: http://discUser:discPassword@localhost:8761/eureka
+#     registerWithEureka: false
 
 zuul:
   prefix: /api
@@ -17,3 +20,20 @@ zuul:
     client:
       path: /client/**
       serviceId: spring-cloud-eureka-client
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+#      clientId: ui1
+#      clientSecret: ui1-secret
+    resource:
+      userInfoUri: http://localhost:9999/uaa/user
+      preferTokenInfo: false
+  sessions: ALWAYS
+
+proxy:
+  auth:
+    routes:
+      client: oauth2
