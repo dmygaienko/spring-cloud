@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .defaultSuccessUrl("/home/index.html", true)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/client/**", "/login*", "/").permitAll()
+                .antMatchers("/api/client/**", "/login*", "/").permitAll()
                 .antMatchers("/eureka/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

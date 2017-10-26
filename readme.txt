@@ -5,8 +5,9 @@ http://www.baeldung.com/spring-cloud-netflix-eureka
 Merged from tutorials
 
 http://www.baeldung.com/spring-cloud-securing-services
-
 https://github.com/eugenp/tutorials/blob/master/spring-cloud/spring-cloud-bootstrap
+
+https://piotrminkowski.wordpress.com/2017/02/22/microservices-security-with-oauth2/
 https://github.com/piomin/sample-spring-oauth2-microservices
 
 ################
