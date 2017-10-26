@@ -17,7 +17,6 @@ import java.security.Principal;
  */
 @SpringBootApplication
 @EnableAuthorizationServer
-//@EnableDiscoveryClient
 @EnableEurekaClient
 @EnableResourceServer
 @RestController

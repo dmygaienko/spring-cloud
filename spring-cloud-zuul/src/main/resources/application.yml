@@ -20,6 +20,9 @@ zuul:
     client:
       path: /client/**
       serviceId: spring-cloud-eureka-client
+     uaa:
+      path: /uaa/**
+      serviceId: auth-server
 
 security:
   oauth2:
