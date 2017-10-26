@@ -21,3 +21,8 @@ http://localhost:8765/api/client/greeting   via api gateway (zuul)
 
 https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html
 http://cloud.spring.io/spring-cloud-security/single/spring-cloud-security.html
+
+
+oauth steps:
+1. login in
+2. provide auth id with redirect http://localhost:9999/uaa/oauth/authorize?response_type=token&client_id=11&redirect_uri=http://example.com&scope=openid&state=48532

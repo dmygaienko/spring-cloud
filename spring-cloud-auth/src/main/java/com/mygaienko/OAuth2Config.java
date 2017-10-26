@@ -43,13 +43,20 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerSecurityConfigurer oauthServer)
             throws Exception {
         oauthServer
+                .allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource);
+        clients.inMemory()
+                .withClient("11")
+                .secret("ui1-secret")
+                .authorities("ADMIN")
+                .authorizedGrantTypes("authorization_code")
+                .scopes("ui1.read")
+                .autoApprove(true);
     }
 
     @Bean

@@ -29,6 +29,7 @@ security:
     client:
       accessTokenUri: http://localhost:9999/uaa/oauth/token
       userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+      clientAuthenticationScheme: form
 #      clientId: ui1
 #      clientSecret: ui1-secret
     resource:
