@@ -15,3 +15,9 @@ https://github.com/piomin/sample-spring-oauth2-microservices
 http://localhost:8761/                      spring eureka
 http://localhost:8080/get-greeting          feign client page
 http://localhost:8765/api/client/greeting   via api gateway (zuul)
+
+
+# theory
+
+https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html
+http://cloud.spring.io/spring-cloud-security/single/spring-cloud-security.html
