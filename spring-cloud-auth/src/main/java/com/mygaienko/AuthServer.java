@@ -1,5 +1,6 @@
 package com.mygaienko;
 
+import com.mygaienko.service.ServiceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -20,7 +21,7 @@ import java.security.Principal;
 @EnableEurekaClient
 @EnableResourceServer
 @RestController
-@Import({OAuth2Config.class, WebSecurityConfig.class})
+@Import({OAuth2Config.class, WebSecurityConfig.class, ServiceConfig.class})
 public class AuthServer {
 
     public static void main(String[] args) {
