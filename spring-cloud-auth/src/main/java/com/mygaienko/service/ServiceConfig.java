@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EntityScan(basePackages = {"com.mygaienko.model"})
 @EnableJpaRepositories(basePackages = {"com.mygaienko.dao"})
-@ComponentScan(basePackages = {"com.mygaienko.service"})
+@ComponentScan(basePackages = {"com.mygaienko.service", "com.mygaienko.controller"})
 public class ServiceConfig {
 }

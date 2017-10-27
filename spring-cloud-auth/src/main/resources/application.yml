@@ -30,9 +30,12 @@ spring:
     data: classpath:sql/data.sql
     initialize: true
 
-#security:
-#  basic:
-#    enabled: false
+#  mvc:
+#    static-path-pattern: /resources/**
+
+security:
+  basic:
+    enabled: false
 #  user:
 #    name: root
 #    password: password

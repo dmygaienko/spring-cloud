@@ -66,7 +66,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .authorities("ADMIN")
                 .authorizedGrantTypes("client_credentials")
                 .scopes("openid")
-//                .autoApprove(true)
+                .autoApprove(true)
         ;
     }
 

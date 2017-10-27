@@ -7,6 +7,8 @@ Merged from tutorials
 http://www.baeldung.com/spring-cloud-securing-services
 https://github.com/eugenp/tutorials/blob/master/spring-cloud/spring-cloud-bootstrap
 
+https://github.com/eugenp/tutorials/blob/master/spring-security-sso
+
 https://piotrminkowski.wordpress.com/2017/02/22/microservices-security-with-oauth2/
 https://github.com/piomin/sample-spring-oauth2-microservices
 
@@ -18,6 +20,9 @@ https://github.com/joshlong/cloud-native-workshop/tree/master/code-java
 http://localhost:8761/                      spring eureka
 http://localhost:8080/get-greeting          feign client page
 http://localhost:8765/api/client/greeting   via api gateway (zuul)
+
+http://localhost:9999/uaa/user
+    Authorization: Bearer 17740807-68c6-4af5-829d-9c88862efc6c
 
 
 # theory

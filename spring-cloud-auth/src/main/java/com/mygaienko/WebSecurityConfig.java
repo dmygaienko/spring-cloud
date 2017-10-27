@@ -1,43 +1,32 @@
 package com.mygaienko;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-
-import javax.sql.DataSource;
 
 /**
  * Created by enda1n on 25.10.2017.
  */
 @Configuration
 @EnableWebSecurity/*(debug = true)*/
+@Order(-1)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private UserDetailsService userDetailsService;
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("steve").password("password").roles("CLIENT")
-                .and()
-                .withUser("admin").password("admin").roles("ADMIN");
+        auth
+                .parentAuthenticationManager(authenticationManager)
+                .inMemoryAuthentication()
+                    .withUser("steve").password("password").roles("CLIENT").and()
+                    .withUser("admin").password("admin").roles("ADMIN");
 //        auth.userDetailsService(userDetailsService);
     }
 
@@ -51,13 +40,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .authorizeRequests().anyRequest().authenticated().and()
 //                .csrf().disable();
-        http
-                .httpBasic().and()
-                .formLogin().permitAll().and()
-                .requestMatchers().antMatchers("/**", "/uaa/login", "/login", "/oauth/authorize", "/oauth/confirm_access", "/uaa/oauth/token")
+//        http
+//                .httpBasic().and()
+//                .formLogin()
+//                    .loginProcessingUrl("/login")
+//                    .loginPage("/login.html")
+//                    .defaultSuccessUrl("/oauth/authorize")
+//                    .permitAll().and()
+////                .requestMatchers()
+////                    .antMatchers("/**", "/templates/**", "/login", "/oauth/authorize", "/oauth/confirm_access", "/uaa/oauth/token")
+////                .and()
+//                .authorizeRequests()
+//                    .antMatchers("/login", "/login.html", "/logout").permitAll()
+//                    .antMatchers("/**").authenticated().and()
+//
+//                .csrf().disable();
+
+        http.csrf().disable()
+                .authorizeRequests()
+                    .antMatchers(
+                            "/login", "/index", "/login.html",
+                            "/index.html", "/logout.do", "/resources/**").permitAll()
+                    .antMatchers("/**").authenticated()
                 .and()
-                .authorizeRequests().anyRequest().authenticated().and()
-                .csrf().disable();
+                .formLogin()
+                    .loginProcessingUrl("/login.html")
+//                    .usernameParameter("name")
+                    .loginPage("/login.html")
+                        .permitAll();
     }
 
 }
