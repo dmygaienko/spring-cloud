@@ -30,19 +30,24 @@ spring:
     data: classpath:sql/data.sql
     initialize: true
 
-security:
+#security:
 #  basic:
 #    enabled: false
-  user:
-    name: root
-    password: password
-  oauth2:
-    client:
-      client-id: acme
-      client-secret: secret
+#  user:
+#    name: root
+#    password: password
+#  oauth2:
+#    client:
+#      client-id: acme
+#      client-secret: secret
 
 eureka:
   client:
      serviceUrl:
          defaultZone: http://discUser:discPassword@localhost:8761/eureka
 #     registerWithEureka: false
+
+
+logging:
+ level:
+   org.springframework.security: DEBUG
