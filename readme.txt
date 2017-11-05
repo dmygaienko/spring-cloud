@@ -15,6 +15,14 @@ https://github.com/piomin/sample-spring-oauth2-microservices
 https://www.youtube.com/watch?v=5q8B6lYhFvE&t=3084s
 https://github.com/joshlong/cloud-native-workshop/tree/master/code-java
 
+#theory to check
+https://github.com/codependent/spring-boot-oauth2  client_credentials + authorization_code
+https://github.com/dynamind/spring-boot-security-oauth2-minimal
+http://www.swisspush.org/security/2016/10/17/oauth2-in-depth-introduction-for-enterprises
+https://github.com/Baeldung/spring-security-oauth/tree/master/spring-security-oauth-server
+https://spring.io/guides/topicals/spring-security-architecture/
+https://github.com/spring-guides/tut-spring-security-and-angular-js/blob/master/oauth2/authserver/
+
 ################
 
 http://localhost:8761/                      spring eureka
@@ -29,8 +37,16 @@ http://localhost:9999/uaa/user
 
 https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html
 http://cloud.spring.io/spring-cloud-security/single/spring-cloud-security.html
-
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-security-oauth2
+https://projects.spring.io/spring-security-oauth/docs/oauth2.html
 
 oauth steps:
 1. login in
 2. provide auth id with redirect http://localhost:9999/uaa/oauth/authorize?response_type=token&client_id=acme&client-secret=secret&redirect_uri=http://example.com&scope=openid&state=48532
+
+http://localhost:9999/uaa/oauth/authorize?response_type=token&client_id=acme1&client-secret=secret1&redirect_uri=http://example.com&scope=openid&state=48532
+
+
+filter order:
+WebSecurityConfigurerAdapter 0
+@EnableResourceServer 3

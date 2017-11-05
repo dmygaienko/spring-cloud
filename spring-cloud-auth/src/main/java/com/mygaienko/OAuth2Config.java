@@ -1,6 +1,7 @@
 package com.mygaienko;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -30,11 +31,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private DataSource dataSource;
-
-    @Autowired
-    private RedisConnectionFactory redisConnectionFactory;
+//    @Autowired
+//    private DataSource dataSource;
 
 //    @Autowired
 //    private UserDetailsService userDetailsService;
@@ -52,21 +50,29 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerSecurityConfigurer oauthServer)
             throws Exception {
         oauthServer
-                .allowFormAuthenticationForClients()
-               /* .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()")*/
+//                .allowFormAuthenticationForClients()
+//                .tokenKeyAccess("isAnonymous()")
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()")
         ;
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("acme")
-                .secret("secret")
-                .authorities("ADMIN")
-                .authorizedGrantTypes("client_credentials", "authorization_code")
-                .scopes("openid")
-                .autoApprove(true)
+                    .withClient("acme")
+                    .secret("secret")
+                    .authorities("ADMIN")
+                    .authorizedGrantTypes("client_credentials" /*, "authorization_code" , "refresh_token"*/)
+                    .scopes("openid")
+                    .autoApprove(true)
+                .and()
+                    .withClient("acme1")
+                    .secret("secret1")
+                    .authorities("ADMIN")
+                    .authorizedGrantTypes("authorization_code" , "refresh_token")
+                    .scopes("openid")
+                    .autoApprove(true)
         ;
     }
 

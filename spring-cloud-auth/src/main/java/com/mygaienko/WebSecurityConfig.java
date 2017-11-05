@@ -1,29 +1,35 @@
 package com.mygaienko;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 /**
  * Created by enda1n on 25.10.2017.
  */
 @Configuration
 @EnableWebSecurity/*(debug = true)*/
-@Order(-1)
+//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+@Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+   /* @Autowired
+    private AuthenticationManager authenticationManager;*/
 
     @Override
+    @Autowired // <-- This is crucial otherwise Spring Boot creates its own
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .parentAuthenticationManager(authenticationManager)
+//                .parentAuthenticationManager(authenticationManager)
                 .inMemoryAuthentication()
                     .withUser("steve").password("password").roles("CLIENT").and()
                     .withUser("admin").password("admin").roles("ADMIN");
@@ -56,18 +62,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //                .csrf().disable();
 
-        http.csrf().disable()
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                    .antMatchers(
+//                            "/login", "/index", "/login.html",
+//                            "/index.html", "/logout.do", "/resources/**",
+//                            "/oauth/authorize").permitAll()
+////                    .antMatchers("*").authenticated()
+//                .and()
+//                .formLogin()
+//                    .loginProcessingUrl("/login.html")
+////                    .usernameParameter("name")
+//                    .loginPage("/login.html")
+//                    .permitAll()
+//                .and()
+//                    .exceptionHandling()
+//                    .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login.html"));
+
+        http
+                .requestMatchers()
+                        .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access").and()
                 .authorizeRequests()
-                    .antMatchers(
-                            "/login", "/index", "/login.html",
-                            "/index.html", "/logout.do", "/resources/**").permitAll()
-                    .antMatchers("/**").authenticated()
-                .and()
-                .formLogin()
-                    .loginProcessingUrl("/login.html")
-//                    .usernameParameter("name")
-                    .loginPage("/login.html")
-                        .permitAll();
+                    .antMatchers("/login.html", "/login").permitAll()
+                    .antMatchers("/oauth/token/revokeById/**").permitAll()
+                    .antMatchers("/oauth/authorize", "/oauth/token").permitAll()
+                    .antMatchers("/tokens/**").permitAll()
+    //                .anyRequest().authenticated()
+                .and().formLogin().permitAll()
+                .and().csrf().disable();
     }
+
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/oauth*");
+//     }
 
 }

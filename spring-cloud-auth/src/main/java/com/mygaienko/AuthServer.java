@@ -17,9 +17,8 @@ import java.security.Principal;
  * Created by enda1n on 25.10.2017.
  */
 @SpringBootApplication
-@EnableAuthorizationServer
-@EnableEurekaClient
 @EnableResourceServer
+@EnableEurekaClient
 @RestController
 @Import({OAuth2Config.class, WebSecurityConfig.class, ServiceConfig.class})
 public class AuthServer {
