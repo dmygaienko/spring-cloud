@@ -39,6 +39,7 @@ https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html
 http://cloud.spring.io/spring-cloud-security/single/spring-cloud-security.html
 https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-security-oauth2
 https://projects.spring.io/spring-security-oauth/docs/oauth2.html
+https://github.com/spring-cloud-samples
 
 oauth steps:
 1. login in
