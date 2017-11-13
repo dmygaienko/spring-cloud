@@ -47,6 +47,12 @@ oauth steps:
 
 http://localhost:9999/uaa/oauth/authorize?response_type=token&client_id=acme1&client-secret=secret1&redirect_uri=http://example.com&scope=openid&state=48532
 
+scope & state should be repeated between calling endpoints
+
+authorization_code:
+1. http://localhost:9999/uaa/oauth/authorize?response_type=code&client_id=acme1&client-secret=secret1&redirect_uri=http://example.com
+2. authorization_code_part2
+
 
 filter order:
 WebSecurityConfigurerAdapter 0
