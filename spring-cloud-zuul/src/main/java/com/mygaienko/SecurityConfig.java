@@ -20,17 +20,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .formLogin()
+////                .defaultSuccessUrl("/home/index.html", true)
+//                .and()
+//                .authorizeRequests()
+//                    .antMatchers("/api/client/**", "/login*", "/").permitAll()
+//                    .antMatchers("/eureka/**").hasRole("ADMIN")
+//                    .anyRequest().authenticated()
+//                    .and()
+//                .logout()
+//                .and()
+//                .csrf().disable();
+
         http
-                .formLogin()
-//                .defaultSuccessUrl("/home/index.html", true)
-                .and()
                 .authorizeRequests()
-                .antMatchers("/api/client/**", "/login*", "/").permitAll()
-                .antMatchers("/eureka/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .logout()
-                .and()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    .loginPage("/login.html").permitAll()
+                    .and()
+                .httpBasic().disable()
                 .csrf().disable();
     }
 

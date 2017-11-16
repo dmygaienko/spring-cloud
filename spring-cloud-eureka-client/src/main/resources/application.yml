@@ -18,5 +18,13 @@ security:
     password: password
   oauth2:
     resource:
-#      loadBalanced: true
-      userInfoUri: http://localhost:9998/user
+##      loadBalanced: true
+      userInfoUri: http://localhost:9999/uaa/user
+      tokenInfoUri: http://localhost:9999/uaa/check_token
+    client:
+      client-id: acme1
+      client-secret: secret1
+      accessTokenUri: http://localhost:9999/uaa/access_token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth
+
+
