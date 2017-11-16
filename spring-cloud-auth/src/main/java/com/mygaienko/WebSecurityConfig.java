@@ -83,11 +83,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers()
                         .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access").and()
                 .authorizeRequests()
-                    .antMatchers("/login.html", "/login").permitAll()
-                    .antMatchers("/oauth/token/revokeById/**").permitAll()
-                    .antMatchers("/oauth/authorize", "/oauth/token").permitAll()
-                    .antMatchers("/tokens/**").permitAll()
-    //                .anyRequest().authenticated()
+//                    .antMatchers("/login.html", "/login").permitAll()
+//                    .antMatchers("/oauth/token/revokeById/**").permitAll()
+//                    .antMatchers("/oauth/authorize", "/oauth/token").permitAll()
+//                    .antMatchers("/tokens/**").permitAll()
+                    .anyRequest().authenticated()
                 .and().formLogin().permitAll()
                 .and().csrf().disable();
     }
