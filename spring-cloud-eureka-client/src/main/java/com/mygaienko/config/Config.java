@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @ComponentScan(basePackages = {"com.mygaienko"})
-@Import({SessionConfig.class})
+//@Import({SessionConfig.class})
 public class Config {
 }
