@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @EnableEurekaServer
-@Import({SessionConfig.class, SecurityConfig.class})
+@Import({/*SessionConfig.class, */SecurityConfig.class})
 public class EurekaServerApplication {
 
     public static void main(String[] args) {
