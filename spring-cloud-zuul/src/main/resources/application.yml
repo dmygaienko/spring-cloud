@@ -25,16 +25,25 @@ zuul:
       serviceId: auth-server
 
 security:
+  basic:
+    enabled: false
   user:
     name: root
     password: password
   oauth2:
+#    client:
+#      accessTokenUri: http://localhost:9999/uaa/oauth/token
+#      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+#      clientAuthenticationScheme: form
+#      clientId: acme1
+#      clientSecret: secret1
+    sso:
+      loginPath: /login
     client:
-      accessTokenUri: http://localhost:9999/uaa/oauth/token
-      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientAuthenticationScheme: form
-      clientId: acme
-      clientSecret: secret
+      accessTokenUri: http://auth-server/uaa/oauth/token
+      userAuthorizationUri: http://auth-server/uaa/oauth/authorize
+      clientId: acme1
+      clientSecret: acmesecret1
     resource:
       userInfoUri: http://localhost:9999/uaa/user
       preferTokenInfo: false
