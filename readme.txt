@@ -57,3 +57,7 @@ authorization_code:
 filter order:
 WebSecurityConfigurerAdapter 0
 @EnableResourceServer 3
+
+
+# kafka
+http://www.baeldung.com/spring-cloud-data-flow-stream-processing
